@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tripwise{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5efe6;
+            color: #1e293b;
+        }
+        a { text-decoration: none; color: inherit; }
+        nav {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f1f5f9;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo { font-size: 22px; font-weight: bold; font-family: Georgia, serif; }
+        .logo span { color: #0d9488; }
+        .nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; color: #475569; }
+        .nav-links a:hover { color: #0d9488; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .input {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 14px;
+            margin-bottom: 14px;
+            font-family: inherit;
+        }
+        .input:focus { outline: none; border-color: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.15); }
+        .btn {
+            display: inline-block;
+            background: #0d9488;
+            color: white;
+            border: none;
+            padding: 13px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #0f766e; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}" class="logo">Tripwise<span>.</span></a>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'destination_list' %}">Destinations</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'destinations/base.html' %}
+{% block title %}Destinations - Tripwise{% endblock %}
+{% block content %}
+<div class="container" style="padding: 50px 24px;">
+    <h2 style="font-family: Georgia, serif; font-size: 30px; margin-bottom: 4px;">Destinations</h2>
+    <p style="color: #64748b; margin-bottom: 36px;">Pick a place, request your dates, we'll take it from there.</p>
+
+    {% if not destinations %}
+        <p style="color: #64748b;">No destinations yet. Add some via the <a href="/admin/" style="color: #0d9488; text-decoration: underline;">admin panel</a>.</p>
+    {% endif %}
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px;">
+        {% for d in destinations %}
+        <a href="{% url 'destination_detail' d.pk %}" style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #f1f5f9; box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: box-shadow 0.2s;">
+            <div style="height: 180px; background: #e2e8f0; position: relative;">
+                {% if d.image_url %}
+                <img src="{{ d.image_url }}" alt="{{ d.name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                {% endif %}
+                <div style="position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600;">
+                    ★ {{ d.rating }}
+                </div>
+            </div>
+            <div style="padding: 18px;">
+                <h3 style="font-family: Georgia, serif; margin: 0 0 2px 0;">{{ d.name }}</h3>
+                <p style="color: #64748b; font-size: 14px; margin: 0 0 12px 0;">{{ d.country }}</p>
+                <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                    <span style="color: #0d9488; font-weight: 600;">€{{ d.price_per_night }}</span>
+                    <span style="color: #94a3b8; font-size: 12px;">/ night</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
